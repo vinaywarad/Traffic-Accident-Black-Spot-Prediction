@@ -1,0 +1,37 @@
+pipeline:
+  raw_data_dir:    data/raw
+  interim_dir:     data/interim
+  processed_dir:   data/processed
+  output_dir:      outputs
+
+bengaluru:
+  lat_min: 12.75
+  lat_max: 13.18
+  lng_min: 77.38
+  lng_max: 77.82
+  utm_crs: "EPSG:32643"
+  center_lat: 12.9716
+  center_lng: 77.5946
+
+blackspot:
+  radius_m:      500
+  threshold:     3
+  window_months: 12
+
+balancing:
+  strategy:     smote_tomek
+  random_state: 42
+
+split:
+  method:    temporal
+  test_year: 2023
+
+features:
+  cyclic_encode: [hour, month, day_of_week]
+  drop_columns:  [accident_id, date, time, datetime]
+
+synthetic:
+  n_records:  5000
+  start_year: 2019
+  end_year:   2023
+  random_seed: 42

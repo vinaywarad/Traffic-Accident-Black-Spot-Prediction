@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #0A0C10;
+  --color-bg-surface: #111418;
+  --color-bg-border: #1E2329;
+  --color-accent-amber: #F59E0B;
+  --color-accent-cyan: #06B6D4;
+  --color-danger: #EF4444;
+  --color-success: #22C55E;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #475569;
+  --font-mono: 'DM Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0A0C10; color: #F1F5F9; font-family: 'Inter', sans-serif; }
+
+/* Leaflet fix */
+.leaflet-container { background: #0A0C10; }
+
+/* Pulsing marker animation */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.pulse-ring { animation: pulse-ring 1.5s ease-out infinite; }
+
+/* Glassmorphism */
+.glass { backdrop-filter: blur(12px); background: rgba(17,20,24,0.8); border: 1px solid rgba(255,255,255,0.06); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0A0C10; }
+::-webkit-scrollbar-thumb { background: #1E2329; border-radius: 2px; }
+
+/* Leaflet popup dark theme */
+.leaflet-popup-content-wrapper { background: #111418; color: #F1F5F9; border: 1px solid #1E2329; border-radius: 8px; }
+.leaflet-popup-tip { background: #111418; }

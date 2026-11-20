@@ -1,0 +1,72 @@
+paths:
+  data_dir:      data
+  models_dir:    models/saved
+  best_model:    models/best_model.pkl
+  metadata:      models/model_metadata.json
+  outputs_dir:   outputs
+  plots_dir:     outputs/plots
+  reports_dir:   outputs/reports
+  logs_dir:      outputs/logs
+  mlruns_dir:    mlruns
+
+mlflow:
+  experiment_name: "blackspot_prediction"
+  tracking_uri:    "mlruns"
+
+training:
+  random_state:   42
+  test_size:      0.2
+  cv_folds:       5
+  cv_gap_days:    30
+  early_stopping_rounds: 50
+  val_months:     3          # last N months of train set used as XGB/LGBM val
+
+tuning:
+  n_trials:       50
+  metric:         "roc_auc"
+  timeout_secs:   600
+
+threshold:
+  optimize_metric: "f1"      # f1 | recall | mcc
+  min_precision:   0.30      # floor when optimizing recall
+
+models:
+  logistic_regression:
+    C:              1.0
+    max_iter:       1000
+    solver:         lbfgs
+    class_weight:   balanced
+
+  random_forest:
+    n_estimators:   300
+    max_depth:      15
+    min_samples_split: 5
+    min_samples_leaf:  2
+    max_features:   sqrt
+    class_weight:   balanced_subsample
+    oob_score:      true
+
+  xgboost:
+    n_estimators:   500
+    max_depth:      6
+    learning_rate:  0.05
+    subsample:      0.8
+    colsample_bytree: 0.8
+    min_child_weight: 3
+    gamma:          0.1
+    reg_alpha:      0.1
+    reg_lambda:     1.0
+    tree_method:    hist
+
+  lightgbm:
+    n_estimators:   500
+    max_depth:      7
+    learning_rate:  0.05
+    num_leaves:     63
+    min_child_samples: 20
+    subsample:      0.8
+    colsample_bytree: 0.8
+    reg_alpha:      0.1
+    reg_lambda:     1.0
+    is_unbalance:   true
+    verbose:        -1
